@@ -16,7 +16,7 @@ function mapDispatchToProps(dispatch){
     return {
       handleQuery: value => dispatch(handleQuery(value)),
       handleSelection: event => dispatch(handleSelection(event)),
-      handleSubmit: (query,selection) => dispatch(handleSubmit(query,selection))
+      handleSubmit: (query,selection) => dispatch(handleSubmit())
     }
 }
 

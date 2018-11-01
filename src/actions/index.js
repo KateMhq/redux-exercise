@@ -34,9 +34,11 @@ export function handleSelection(event){
 
 }
 
-export function handleSubmit(query,selection) {
+export function handleSubmit() {
 
-  return function(dispatch) {
+  return function(dispatch, getState) {
+    const {query,selection}=getState().searchReducer; //values are stored in the state. can get them here directly
+
     fetch(`https://swapi.co/api/${selection}/?search=${query}`)
       .then(response => response.json())
       .then(body => {

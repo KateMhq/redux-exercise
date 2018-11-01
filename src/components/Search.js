@@ -1,12 +1,12 @@
 import React from "react";
 
-function Search({handleQuery, query, handleSubmit, results, err, selection,handleSelection}) {
+function Search({query, results, err, selection,handleSubmit,handleQuery,  handleSelection}) {
   //console.log(query);
   return (
   <section>
     <form onSubmit={(event)=>{
       event.preventDefault();
-      handleSubmit(query, selection);
+      handleSubmit();
     }}>
     <select onChange={(event)=>handleSelection(event.target.value)}>
       <option value="people">People</option>
