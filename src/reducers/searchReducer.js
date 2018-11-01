@@ -1,4 +1,4 @@
-function searchReducer(state = {query:''}, action){
+function searchReducer(state = {query:'',selection:'people'}, action){
   switch (action.type) {
 
     case 'UPDATE_QUERY':
@@ -12,10 +12,13 @@ function searchReducer(state = {query:''}, action){
     });
 
     case 'DISPLAY_ERROR':
-    return action.message;
+    return Object.assign({}, state, {message: action.message});
 
     case 'RECEIVE_ERROR':
-    return action.message
+    return Object.assign({}, state, {message: action.message});
+
+    case 'SELECT_TYPE':
+      return Object.assign({}, state, {selection: action.selection});
 
     default:
       return state;

@@ -6,7 +6,7 @@ export function handleQuery(searchQuery) {
 }
 
 export function displayResults(results) {
-  if (results.length == 0){
+  if (results.length === 0){
     return {
       type: "DISPLAY_ERROR",
       message: {error:'Results not found'}
@@ -25,15 +25,29 @@ export function receiveError(msg){
   }
 }
 
-export function handleSubmit(query) {
+export function handleSelection(event){
+  console.log(event)
+  return {
+    type: "SELECT_TYPE",
+    selection: event
+  };
+
+}
+
+export function handleSubmit(query,selection) {
+
   return function(dispatch) {
-    fetch(`https://swapi.co/api/people/?search=${query}`)
+    fetch(`https://swapi.co/api/${selection}/?search=${query}`)
       .then(response => response.json())
-      .then(results => {
-        dispatch(displayResults(results.results));
+      .then(body => {
+        console.log(body)
+        dispatch(displayResults(body.results));
         dispatch(handleQuery(''))
       })
-      .catch(error => dispatch(receiveError(error.message)))
+      .catch(error => {
+        console.log(error);
+        dispatch(receiveError(error))}
+      )
 
   };
 
